@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Upcoming Games
+{% endblock %}
+{% block main %}
+
+<table class = "table">
+        <caption>Upcoming Games</caption>
+        <tr>
+            <th>Teams</th>
+            <th class="choice-radio">Choice</th>
+            <th>Day</th>
+        </tr>
+
+    {% for game in future_games %}
+<form>
+
+    <tr>
+
+        <td>{{ game['awayTeam']['Abbreviation'] }} vs {{ game['homeTeam']['Abbreviation'] }}</td>
+        <td class="choice-radio">
+            <fieldset id = {{ game['id'] }}>
+                <input type = "radio" name = {{ game['id'] }} value =  {{ game['awayTeam']['ID']}} > {{ game['awayTeam']['Name'] }} <br>
+                <input type = "radio" name = {{ game['id'] }} value = {{ game['awayTeam']['ID'] }}> {{ game['homeTeam']['Name'] }} <br>
+            </fieldset>
+        </td>
+        <td>{{ game['date'] }} @ {{ game['time'] }} ET in {{ game['homeTeam']['City'] }}</td>
+
+
+    </tr>
+    {% endfor %}
+
+    <div>
+        <input type = "submit" value = "Submit">
+    </div>
+
+</form>
+{% endblock %}
